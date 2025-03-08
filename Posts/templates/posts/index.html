@@ -1,0 +1,26 @@
+{% extends "posts/base.html" %}
+
+    {%block content%}
+    
+    
+
+    <div class="card">
+        <div class="card-header">
+          Posts
+        </div>
+        {% for post in all_posts %}
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{ post.content}}</p>
+          <p class="fs-6 text-end">{{post.post_time}}</p>
+          <a href="{% url "edit_post" post.id %}" class="btn btn-primary">Edit Post</a>
+          <a href="{% url "delete_post" post.id %}" class="btn btn-primary">Delete Post</a>
+          <a href="{% url "post_details" post.id %}" class="btn btn-primary">Details</a>
+          <a href="{% url "post_coment" post.id %}" class="btn btn-primary">Details</a>
+        </div>
+        {% endfor %}
+      </div>
+    
+    <a href="{% url "new_post" %}" class="btn btn-primary mt-5">New Post</a>
+    {% endblock %}
+
