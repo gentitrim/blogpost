@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView,FormView,UpdateView,DeleteView,DetailView
-from .models import Post
+from .models import Post,Coment,Author
 from django.urls import reverse_lazy
-from .forms import CreatePostViewForm,ModifyPostViewForm
+from .forms import CreatePostViewForm,ModifyPostViewForm,ComentViewForm
 
 # Create your views here.
 
@@ -44,11 +44,17 @@ class DeletePostView(DeleteView):
 
 class ComentPostView(FormView):
     template_name ='posts/create_coment.html'
-    form_class = CreatePostViewForm
+    form_class = ComentViewForm
     success_url = reverse_lazy('post')
-    def form_valid(self, form):
-        cleaned_data = form.cleaned_data
-        Post.objects.create(
-            content=cleaned_data["content"],
-        )
+    def form_valid(self,form):
+        if form.is_valid():
+            form.instance.post_id = self.kwargs["pk"]
+            form.save()
+
         return super().form_valid(form)
+    
+
+# class CommentView(ListView):
+#     template_name = "posts/post_detail.html"
+#     model = Coment
+#     context_object_name = "all_comments"

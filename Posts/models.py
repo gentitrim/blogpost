@@ -8,7 +8,7 @@ class Post(models.Model):
     content = TextField(max_length=2000)
     post_time = DateTimeField(auto_now_add=True)
     post_update_time = DateTimeField(auto_now=True)
-    author = ForeignKey("Author",on_delete=CASCADE)
+    author = ForeignKey("Author",on_delete=CASCADE,null=True)
 
     def __str__(self):
         return self.title
@@ -26,5 +26,5 @@ class Coment(models.Model):
     content = TextField(max_length=2000)
     post_time = DateTimeField(auto_now_add=True)
     post_update_time = DateTimeField(auto_now=True)
-    author = ForeignKey("Author",on_delete=DO_NOTHING)
-    post = ForeignKey("Post",on_delete=CASCADE)
+    author = ForeignKey("Author",on_delete=DO_NOTHING,null=True)
+    post = ForeignKey("Post",on_delete=CASCADE,related_name="coments")

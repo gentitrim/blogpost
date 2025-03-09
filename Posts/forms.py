@@ -23,4 +23,4 @@ class ModifyPostViewForm(ModelForm):
 class ComentViewForm(ModelForm):
     class Meta:
         model = Coment
-        exclude = ["post_time","post_update_time"]
+        exclude = ["post_time","post_update_time","post","author"]

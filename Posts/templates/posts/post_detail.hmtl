@@ -1,9 +1,0 @@
-{% extends "posts/base.html" %}
-
-    {%block content%}
-    
-        <p>{{post.title}}</p>
-        <p>{{post.content}}</p>
-        <p>{{post.post_time}}</p>
-
-    {% endblock %}

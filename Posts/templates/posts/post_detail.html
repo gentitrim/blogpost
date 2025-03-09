@@ -1,0 +1,15 @@
+{% extends "posts/base.html" %}
+
+    {%block content%}
+    
+        <p>{{post_detail.title}}</p>
+        <p>{{post_detail.content}}</p>
+        <p>{{post_detail.post_time}}</p>
+        <p>{{post_detail.postauthor}}</p>
+
+        {% for coment in post.coments.all %}
+            <p class="card-text">{{ coment.content }}</p>
+            <p class="card-text">{{ coment.author }}</p>
+        {% endfor %}
+
+    {% endblock %}
